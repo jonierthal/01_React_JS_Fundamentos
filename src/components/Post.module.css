@@ -81,7 +81,7 @@
 .commentForm textarea {
     width: 100%;
     background: var(--gray-900);
-    border:0;
+    border: 0;
     resize: none;
     height: 6rem;
     padding: 1rem;
@@ -115,4 +115,8 @@
 
 .commentForm button[type=submit]:hover {
     background: var(--green-300);
+}
+
+.commentList {
+    margin-top: 2rem;
 }
