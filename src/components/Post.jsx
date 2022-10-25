@@ -8,9 +8,10 @@ import { useState } from 'react';
 
 export function Post({ author, publishedAt, content }){
     const [comments, setComments] = useState([
-        1,
-        2,
+        'Post Muito legal'
     ])
+
+    const [newCommentText, setNewCommentText] = useState('');
 
     const publishedDateFormatted  = format(publishedAt, "d 'de' LLLL 'as' HH:mm'h'", {
         locale: ptBR,
@@ -24,8 +25,12 @@ export function Post({ author, publishedAt, content }){
     function handleCreateNewComment() {
         event.preventDefault();
 
-        setComments([...comments, comments.length + 1]);
+        setComments([...comments, newCommentText]);
+        setNewCommentText('');
+    }
 
+    function handelNewCommentChange() {
+        setNewCommentText(event.target.value);
     }
 
     return (
@@ -58,7 +63,10 @@ export function Post({ author, publishedAt, content }){
                 <strong>Deixe seu feedback</strong>
 
                 <textarea
+                    name="comment"
                     placeholder="Deixe seu comentário"
+                    value={newCommentText}
+                    onChange={handelNewCommentChange}
                 />
 
                 <footer>
@@ -68,7 +76,7 @@ export function Post({ author, publishedAt, content }){
 
             <div className={styles.commentList}>
                 {comments.map( comment => {
-                    return <Comment />
+                    return <Comment content={comment} />
                 })}
             </div>
         </article>
